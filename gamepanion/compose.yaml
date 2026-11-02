@@ -1,0 +1,48 @@
+# gamepanion.app: Gamepanion (https://github.com/gamepanion/gamepanion) and the speech to text its chat uses. Nothing here
+# is published to the internet: Gamepanion listens on the server's private address, where Caddy passes requests on; whisper
+# is reachable only from Gamepanion, on a network of their own.
+services:
+  gamepanion:
+    image: ghcr.io/gamepanion/gamepanion:0.1.0
+    container_name: gamepanion
+    # Monitored by Uptime Kuma (AutoKuma reads these labels), past Caddy; the public name is checked at Caddy.
+    labels:
+      kuma.gamepanion.http.name: gamepanion (direct)
+      kuma.gamepanion.http.url: http://${PRIVATE_IP}:8082/health
+      kuma.gamepanion.http.parent_name: host-group
+    restart: unless-stopped
+    mem_limit: 512m
+    # Every setting, secrets included, from .env (see .env.example).
+    env_file: .env
+    environment:
+      GAMEPANION_TRANSCRIBE_URL: http://whisper:8000
+      GAMEPANION_TRANSCRIBE_MODEL: ${GAMEPANION_TRANSCRIBE_MODEL:-Systran/faster-whisper-small}
+    # gamepanion.sqlite (the log), auth.sqlite (sign-in) and dumps/ (scripts/dump.sh). The image runs as 1000.
+    volumes:
+      - ./data:/data
+    ports:
+      - "${PRIVATE_IP:?this server's address on the private network}:8082:3000"
+    security_opt:
+      - no-new-privileges:true
+    # The image has its own HEALTHCHECK on /health.
+    depends_on:
+      - whisper
+
+  whisper:
+    # speaches: speech to text over the OpenAI-compatible POST /v1/audio/transcriptions. It has no sign-in, so it publishes no
+    # port: only containers of this file reach it. It transcribes only models installed into ./whisper (POST /v1/models/<id>, which the
+    # deployment does once); a small model, since this server has 2 vCPUs and 4 GB shared with other products.
+    image: ghcr.io/speaches-ai/speaches:0.8.3-cpu
+    container_name: gamepanion-whisper
+    restart: unless-stopped
+    environment:
+      WHISPER__COMPUTE_TYPE: int8 # int8 on CPU: much faster, about the same quality
+      WHISPER__TTL: "-1" # keep the model loaded instead of reloading it for every message
+      ENABLE_UI: "false"
+      LOG_LEVEL: info
+    volumes:
+      - ./whisper:/home/ubuntu/.cache/huggingface/hub
+    mem_limit: 1g
+    cpus: 1.5
+    security_opt:
+      - no-new-privileges:true

@@ -1,0 +1,5 @@
+# Written on the server by the deployment repository; never committed.
+.env
+# What the containers store: the databases, their dumps, the speech model.
+data/
+whisper/
