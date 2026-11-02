@@ -33,7 +33,7 @@ speaches with `Systran/faster-whisper-small` (int8, about 500 MB in memory, at m
 | daily          | 03:15                                               | 30 days            |
 | before-upgrade | each deployment that changes the checkout or `.env` | 1 day              |
 
-Every night the newest daily dump also goes to the business's Storage Box (restic, `products-1`'s sub-account, tag `gamepanion`, 29 days), with notefeed's copy. A failed run alerts the ntfy topic; a run that doesn't happen is noticed by its healthchecks.io check.
+Every night at 04:40 the newest daily dump also goes to the business's Storage Box: restic, into Gamepanion's own sub-account (`u707825-sub3`, home `/gamepanion`) and a repository with its own password, kept 29 days. A failed run alerts the ntfy topic; a run that doesn't happen is noticed by its healthchecks.io check.
 
 `GAMEPANION_SECRET` is in no backup: it is in the vault and in 1Password. A dump without it restores the logs, but every browser and every Claude has to sign in again.
 
@@ -49,8 +49,13 @@ cp data/dumps/<kind>-<time>/gamepanion.sqlite data/dumps/<kind>-<time>/auth.sqli
 docker compose start gamepanion
 ```
 
-From the Storage Box: restore the newest snapshot tagged `gamepanion` into a folder (as root, the commands in `docs/products-1.md` of the deployment repository) and copy the two files the same way.
+From the Storage Box, as root on the server, into a folder; then copy the two files the same way:
+
+```sh
+export RESTIC_REPOSITORY=sftp:storagebox-gamepanion:restic RESTIC_PASSWORD_FILE=/etc/restic/gamepanion-password
+restic -o sftp.command="ssh -F /etc/restic/ssh_config storagebox-gamepanion -s sftp" restore latest --target /var/tmp/restore
+```
 
 ## Logs and monitoring
 
-The container logs go to Loki on `gewerbe-1` with the server's other logs. Uptime Kuma watches `/health` past Caddy (the `kuma.*` labels in `compose.yaml`) and `https://gamepanion.app` through Caddy (the labels in `notefeed/stacks`' Caddy). Caddy counts requests per host name for Prometheus.
+The container logs go to Loki on `gewerbe-1`, labelled `product=gamepanion`. Uptime Kuma watches `/health` past Caddy (the `kuma.*` labels in `compose.yaml`) and `https://gamepanion.app` through Caddy (the labels in `notefeed/stacks`' Caddy). Caddy counts requests per host name for Prometheus.
