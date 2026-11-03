@@ -3,15 +3,16 @@
 #
 #   dump.sh <kind> <days to keep>      e.g.  dump.sh hourly 1
 #
-# Each run makes a folder <kind>-<time>/ with gamepanion.sqlite (the players' logs) and auth.sqlite (sign-in, sessions,
-# passkeys, connected clients). Each is a consistent `sqlite3 .backup` taken while Gamepanion writes (needs sqlite3 on the
-# host, and to run as the user the container runs as, 1000), checked with PRAGMA integrity_check, and the folder gets its
-# real name only once both are whole. Old folders of the kind are removed only after a new one succeeded. The secret is not
+# Each run makes a folder <kind>-<time>/ with gamepanion.sqlite (the players' logs), auth.sqlite (sign-in, sessions,
+# passkeys, connected clients) and, once payments are on and it exists, billing.sqlite (subscriptions). Each is a consistent
+# `sqlite3 .backup` taken while Gamepanion writes (needs sqlite3 on the host, and to run as the user the container runs as,
+# 1000), checked with PRAGMA integrity_check, and the folder gets its real name only once all of them are whole. Old folders of the kind are removed only after a new one succeeded. The secret is not
 # in a dump: on the server it is GAMEPANION_SECRET in the deployment's vault.
 #
 # To restore, with Gamepanion stopped (docker compose stop gamepanion; docker compose start gamepanion afterwards):
 #   rm -f data/gamepanion.sqlite-wal data/gamepanion.sqlite-shm data/auth.sqlite-wal data/auth.sqlite-shm
 #   cp data/dumps/<kind>-<time>/gamepanion.sqlite data/dumps/<kind>-<time>/auth.sqlite data/
+#   (and billing.sqlite, with its -wal and -shm removed the same way, when the dump has one)
 set -euo pipefail
 
 kind=${1:?the kind of dump, e.g. hourly}
@@ -30,7 +31,9 @@ tmp="$out.tmp"
 trap 'rm -rf "$tmp"' EXIT
 mkdir "$tmp"
 
-for db in gamepanion auth; do
+dbs=(gamepanion auth)
+[[ -f $data/billing.sqlite ]] && dbs+=(billing)
+for db in "${dbs[@]}"; do
   [[ -f $data/$db.sqlite ]] || { echo "dump: $data/$db.sqlite is missing" >&2; exit 1; }
   sqlite3 "$data/$db.sqlite" ".backup '$tmp/$db.sqlite'"
   [[ $(sqlite3 "$tmp/$db.sqlite" 'PRAGMA integrity_check;') == ok ]] || { echo "dump: the copy of $db.sqlite is not intact" >&2; exit 1; }

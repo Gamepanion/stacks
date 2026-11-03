@@ -15,6 +15,8 @@ flowchart LR
 
 Every setting is in `gamepanion/.env`, written by the deployment from its vault; `.env.example` lists the names. Sign-in is by emailed code and link, then a passkey; no OpenID provider. `PUBLIC_URL` is `https://gamepanion.app`: passkeys are bound to it, and so is every connected Claude.
 
+The imprint, privacy policy, terms and the subscribe page's words are the files in `gamepanion/legal/`, one per language (`imprint.en.md`, `imprint.de.md`, …), mounted read-only and named in `compose.yaml`. A change is a commit here and a deployment; the prices in `terms.*.md` must say what the Creem products say. With a payment provider set, Gamepanion does not report healthy without all four.
+
 ## Upgrading
 
 A Dependabot pull request bumps the image in `compose.yaml`. Merge it, then deploy (`ansible-playbook site.yml --limit products-1`). The deployment takes a dump before it touches a changed checkout or `.env`; if that fails, nothing is changed. Gamepanion migrates its databases when it starts.
@@ -35,7 +37,9 @@ speaches with `Systran/faster-whisper-small` (int8, about 500 MB in memory, at m
 
 Every night at 04:40 the newest daily dump also goes to the business's Storage Box: restic, into Gamepanion's own sub-account (`u707825-sub3`, home `/gamepanion`) and a repository with its own password, kept 29 days. A failed run alerts the ntfy topic; a run that doesn't happen is noticed by its healthchecks.io check.
 
-`GAMEPANION_SECRET` is in no backup: it is in the vault and in 1Password. A dump without it restores the logs, but every browser and every Claude has to sign in again.
+`GAMEPANION_SECRET` is in no backup: it is in the vault and in 1Password. A dump without it restores the logs, but every browser and every Claude has to sign in again. The same holds for `GAMEPANION_KEY_ENCRYPTION_KEY`: without it the players' stored Anthropic keys can't be read, and they paste them again.
+
+Once payments are on, `billing.sqlite` (who subscribes) is dumped with the other two.
 
 ## Restore
 

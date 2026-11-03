@@ -3,7 +3,7 @@
 # is reachable only from Gamepanion, on a network of their own.
 services:
   gamepanion:
-    image: ghcr.io/gamepanion/gamepanion:0.1.1
+    image: ghcr.io/gamepanion/gamepanion:0.2.0
     container_name: gamepanion
     # Monitored by Uptime Kuma (AutoKuma reads these labels), past Caddy; the public name is checked at Caddy.
     labels:
@@ -17,9 +17,17 @@ services:
     environment:
       GAMEPANION_TRANSCRIBE_URL: http://whisper:8000
       GAMEPANION_TRANSCRIBE_MODEL: ${GAMEPANION_TRANSCRIBE_MODEL:-Systran/faster-whisper-small}
-    # gamepanion.sqlite (the log), auth.sqlite (sign-in) and dumps/ (scripts/dump.sh). The image runs as 1000.
+      # This instance's own imprint, privacy policy, terms and the subscribe page's words (./legal), in English and German;
+      # Gamepanion ships none of them. Read on every request, so an edited file shows once it is deployed.
+      GAMEPANION_IMPRINT_FILE: /legal/imprint.{lang}.md
+      GAMEPANION_PRIVACY_FILE: /legal/privacy.{lang}.md
+      GAMEPANION_TERMS_FILE: /legal/terms.{lang}.md
+      GAMEPANION_PRICING_FILE: /legal/pricing.{lang}.md
+    # gamepanion.sqlite (the log), auth.sqlite (sign-in), billing.sqlite (subscriptions, once payments are on) and dumps/
+    # (scripts/dump.sh). The image runs as 1000.
     volumes:
       - ./data:/data
+      - ./legal:/legal:ro
     ports:
       - "${PRIVATE_IP:?this server's address on the private network}:8082:3000"
     security_opt:
