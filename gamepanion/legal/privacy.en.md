@@ -74,7 +74,7 @@ Separately, your IP address is used in memory to limit how often sign-in can be 
 
 ## E-mail
 
-**What:** the sign-in codes are sent from noreply@gamepanion.app, and mail to an address at gamepanion.app is received, through the mail servers of STRATO GmbH (Otto-Ostrowski-Straße 7, 10249 Berlin, Germany), under a data processing agreement. If you write to me, your message with your address is stored there.
+**What:** the sign-in codes are sent from noreply@gamepanion.app, and mail to an address at gamepanion.app is received, through the mail servers of STRATO GmbH (Otto-Ostrowski-Straße 7, 10249 Berlin, Germany). If you write to me, your message with your address is stored there.
 
 **Why and legal basis:** to sign you in (Art. 6 (1) (b) GDPR), and to read and answer what you wrote (Art. 6 (1) (f) GDPR, legitimate interest; Art. 6 (1) (b) if it is about a contract).
 

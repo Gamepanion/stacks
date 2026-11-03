@@ -74,7 +74,7 @@ Daneben wird deine IP-Adresse im Arbeitsspeicher verwendet, um zu begrenzen, wie
 
 ## E-Mail
 
-**Was:** Die Anmeldecodes werden von noreply@gamepanion.app versandt, und E-Mails an eine Adresse bei gamepanion.app werden empfangen, über die Mailserver der STRATO GmbH (Otto-Ostrowski-Straße 7, 10249 Berlin), nach einem Vertrag zur Auftragsverarbeitung. Schreibst du mir, wird deine Nachricht mit deiner Adresse dort gespeichert.
+**Was:** Die Anmeldecodes werden von noreply@gamepanion.app versandt, und E-Mails an eine Adresse bei gamepanion.app werden empfangen, über die Mailserver der STRATO GmbH (Otto-Ostrowski-Straße 7, 10249 Berlin). Schreibst du mir, wird deine Nachricht mit deiner Adresse dort gespeichert.
 
 **Warum und Rechtsgrundlage:** um dich anzumelden (Art. 6 Abs. 1 lit. b DSGVO) und um zu lesen und zu beantworten, was du schreibst (Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse; Art. 6 Abs. 1 lit. b, wenn es um einen Vertrag geht).
 
