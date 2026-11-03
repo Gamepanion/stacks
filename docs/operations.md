@@ -35,7 +35,9 @@ speaches with `Systran/faster-whisper-small` (int8, about 500 MB in memory, at m
 
 Every night at 04:40 the newest daily dump also goes to the business's Storage Box: restic, into Gamepanion's own sub-account (`u707825-sub3`, home `/gamepanion`) and a repository with its own password, kept 29 days. A failed run alerts the ntfy topic; a run that doesn't happen is noticed by its healthchecks.io check.
 
-`GAMEPANION_SECRET` is in no backup: it is in the vault and in 1Password. A dump without it restores the logs, but every browser and every Claude has to sign in again.
+`GAMEPANION_SECRET` is in no backup: it is in the vault and in 1Password. A dump without it restores the logs, but every browser and every Claude has to sign in again. The same holds for `GAMEPANION_KEY_ENCRYPTION_KEY`: without it the players' stored Anthropic keys can't be read, and they paste them again.
+
+Once payments are on, `billing.sqlite` (who subscribes) is dumped with the other two.
 
 ## Restore
 
