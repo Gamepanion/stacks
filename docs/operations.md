@@ -15,6 +15,8 @@ flowchart LR
 
 Every setting is in `gamepanion/.env`, written by the deployment from its vault; `.env.example` lists the names. Sign-in is by emailed code and link, then a passkey; no OpenID provider. `PUBLIC_URL` is `https://gamepanion.app`: passkeys are bound to it, and so is every connected Claude.
 
+The imprint, privacy policy, terms and the subscribe page's words are the files in `gamepanion/legal/`, one per language (`imprint.en.md`, `imprint.de.md`, …), mounted read-only and named in `compose.yaml`. A change is a commit here and a deployment; the prices in `terms.*.md` must say what the Creem products say. With a payment provider set, Gamepanion does not report healthy without all four.
+
 ## Upgrading
 
 A Dependabot pull request bumps the image in `compose.yaml`. Merge it, then deploy (`ansible-playbook site.yml --limit products-1`). The deployment takes a dump before it touches a changed checkout or `.env`; if that fails, nothing is changed. Gamepanion migrates its databases when it starts.

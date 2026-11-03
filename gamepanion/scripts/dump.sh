@@ -3,10 +3,10 @@
 #
 #   dump.sh <kind> <days to keep>      e.g.  dump.sh hourly 1
 #
-# Each run makes a folder <kind>-<time>/ with gamepanion.sqlite (the players' logs) and auth.sqlite (sign-in, sessions,
-# passkeys, connected clients), and billing.sqlite (subscriptions) once payments are on and it exists. Each is a consistent `sqlite3 .backup` taken while Gamepanion writes (needs sqlite3 on the
-# host, and to run as the user the container runs as, 1000), checked with PRAGMA integrity_check, and the folder gets its
-# real name only once both are whole. Old folders of the kind are removed only after a new one succeeded. The secret is not
+# Each run makes a folder <kind>-<time>/ with gamepanion.sqlite (the players' logs), auth.sqlite (sign-in, sessions,
+# passkeys, connected clients) and, once payments are on and it exists, billing.sqlite (subscriptions). Each is a consistent
+# `sqlite3 .backup` taken while Gamepanion writes (needs sqlite3 on the host, and to run as the user the container runs as,
+# 1000), checked with PRAGMA integrity_check, and the folder gets its real name only once all of them are whole. Old folders of the kind are removed only after a new one succeeded. The secret is not
 # in a dump: on the server it is GAMEPANION_SECRET in the deployment's vault.
 #
 # To restore, with Gamepanion stopped (docker compose stop gamepanion; docker compose start gamepanion afterwards):
