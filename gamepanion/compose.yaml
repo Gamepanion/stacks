@@ -3,7 +3,7 @@
 # is reachable only from Gamepanion, on a network of their own.
 services:
   gamepanion:
-    image: ghcr.io/gamepanion/gamepanion:0.5.0
+    image: ghcr.io/gamepanion/gamepanion:0.5.1
     container_name: gamepanion
     # Monitored by Uptime Kuma (AutoKuma reads these labels), past Caddy; the public name is checked at Caddy.
     labels:
