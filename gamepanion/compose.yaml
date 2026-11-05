@@ -3,7 +3,7 @@
 # is reachable only from Gamepanion, on a network of their own.
 services:
   gamepanion:
-    image: ghcr.io/gamepanion/gamepanion:0.5.3
+    image: ghcr.io/gamepanion/gamepanion:0.5.4
     container_name: gamepanion
     # Monitored by Uptime Kuma (AutoKuma reads these labels), past Caddy; the public name is checked at Caddy.
     labels:
@@ -23,6 +23,8 @@ services:
       GAMEPANION_PRIVACY_FILE: /legal/privacy.{lang}.md
       GAMEPANION_TERMS_FILE: /legal/terms.{lang}.md
       GAMEPANION_PRICING_FILE: /legal/pricing.{lang}.md
+      # "Report a problem" posts to noticebox's gamepanion-report form (origins https://gamepanion.app, back to /report?sent=1).
+      GAMEPANION_REPORT_ENDPOINT: https://noticebox.marcelbruckner.de/f/gamepanion-report
     # gamepanion.sqlite (the log), auth.sqlite (sign-in), billing.sqlite (subscriptions, once payments are on) and dumps/
     # (scripts/dump.sh). The image runs as 1000.
     volumes:

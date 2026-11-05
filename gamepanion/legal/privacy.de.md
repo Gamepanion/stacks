@@ -80,6 +80,16 @@ Daneben wird deine IP-Adresse im Arbeitsspeicher verwendet, um zu begrenzen, wie
 
 **Speicherdauer:** Eine Anmelde-E-Mail bewahre ich nicht auf. Deine Nachrichten: bis die Sache erledigt ist, länger nur, wo das Gesetz die Aufbewahrung von Geschäftspost verlangt.
 
+## Ein Problem melden
+
+**Was:** was du mit „Problem melden“ schickst: ob es ein Problem oder eine Idee ist, Titel und Text und, nur wenn du sie angibst, deine E-Mail-Adresse. Dein Browser schickt es direkt an mein Postfach unter noticebox.marcelbruckner.de, das auf meinem eigenen Server bei Hetzner läuft (siehe Hosting); es wird nicht in Gamepanion gespeichert und nicht mit deinem Konto verbunden. Gegen Missbrauch wird deine IP-Adresse im Arbeitsspeicher genutzt, um zu begrenzen, wie viele Meldungen in zehn Minuten gesendet werden können; mit der Meldung gespeichert wird sie nicht.
+
+**Warum und Rechtsgrundlage:** um zu beheben, was du meldest, und dir, wenn du möchtest, zu antworten (Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse).
+
+**Speicherdauer:** Text und E-Mail-Adresse werden 30 Tage, nachdem die Meldung erledigt ist, gelöscht; dass sie einging und wie sie bearbeitet wurde, bleibt.
+
+Legst du stattdessen ein Issue auf GitHub an, ist das ein Dienst von GitHub, Inc. (USA) nach dessen eigener Datenschutzerklärung, und das Issue ist öffentlich.
+
 ## Cookies und Speicher in deinem Browser
 
 Ein Cookie hält dich angemeldet, eines merkt sich deine Sprache. Beide sind für den Dienst, den du angefragt hast, unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG), daher ist keine Einwilligung nötig. Das Gespräch im Chat liegt im lokalen Speicher deines Browsers, damit es noch da ist, wenn du wiederkommst; es verlässt dein Gerät nur als Nachrichten, die du sendest, und das Löschen der Website-Daten in deinem Browser entfernt es. Es gibt keine Analyse, keine Werbung und keine Anfragen an Dritte, und nichts wird von fremden Servern geladen.

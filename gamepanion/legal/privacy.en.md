@@ -80,6 +80,16 @@ Separately, your IP address is used in memory to limit how often sign-in can be 
 
 **Retention:** a sign-in mail is not kept by me. Your messages: until the matter is settled, and longer only where the law requires keeping business mail.
 
+## Reporting a problem
+
+**What:** what you send with "Report a problem": whether it is a problem or an idea, its title and text, and, only if you give it, your e-mail address. Your browser sends it straight to my inbox at noticebox.marcelbruckner.de, which runs on my own server at Hetzner (see Hosting); it is not stored in Gamepanion or linked to your account. To stop abuse, your IP address is used in memory to limit how many reports can be sent in ten minutes; it is not stored with the report.
+
+**Why and legal basis:** to fix what you report and, if you asked, to answer you (Art. 6 (1) (f) GDPR, legitimate interest).
+
+**Retention:** the text and your e-mail address are deleted 30 days after the report is settled; that it came in and how it was handled are kept.
+
+If you open an issue on GitHub instead, that is GitHub's service (GitHub, Inc., USA) under its own privacy policy, and the issue is public.
+
 ## Cookies and storage in your browser
 
 A cookie keeps you signed in, and one remembers your language. Both are strictly necessary for the service you asked for (§ 25 (2) no. 2 TDDDG), so no consent is needed. The chat's conversation is kept in your browser's local storage, so that it is still there when you come back; it never leaves your device except as messages you send, and clearing the site's data in your browser removes it. There are no analytics, advertising or third-party requests, and nothing is loaded from external servers.
