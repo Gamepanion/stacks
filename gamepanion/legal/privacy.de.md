@@ -50,6 +50,8 @@ Verbindest du einen KI-Assistenten (etwa Claude) mit Gamepanion, liest und schre
 - **Über Gamepanions KI** (der Plan mit Gamepanions KI): Anthropic verarbeitet sie in meinem Auftrag nach ihren kommerziellen Bedingungen und ihrem Zusatz zur Auftragsverarbeitung (Art. 28 DSGVO). Die Übermittlung in die USA ist durch die EU-Standardvertragsklauseln in diesem Zusatz abgesichert (Art. 46 Abs. 2 lit. c DSGVO). Nach diesen Bedingungen trainiert Anthropic seine Modelle nicht damit. Gamepanion zählt, wie viel des monatlichen Kontingents du verbraucht hast (Tokens und Minuten Sprache, je Monat), und sonst nichts über das Gespräch.
 - **Über deinen eigenen Anthropic-Schlüssel:** Der Chat läuft nach deiner eigenen Vereinbarung mit Anthropic. Dein Schlüssel wird verschlüsselt gespeichert und nie wieder angezeigt; du kannst ihn jederzeit auf deiner Kontoseite entfernen.
 
+**Bilder im Chat:** Ein Bild, das du anhängst, wird in deinem Browser verkleinert, was auch seine Metadaten entfernt (etwa, wo ein Foto aufgenommen wurde), und mit dieser einen Nachricht an Anthropic geschickt, wie oben beschrieben. Gamepanion speichert es nicht; was die KI daraus liest, kann als Text in deinem Log abgelegt werden.
+
 **Sprechen in den Chat:** Deine Aufnahme wird von einem Spracherkennungsdienst auf demselben Server in Text umgewandelt (kein Dritter). Die Aufnahme wird nicht gespeichert; der Text wird zu deiner Nachricht.
 
 **Warum und Rechtsgrundlage:** um zu beantworten, was du im Chat fragst (Art. 6 Abs. 1 lit. b DSGVO).

@@ -50,6 +50,8 @@ When you connect an AI assistant (such as Claude) to Gamepanion, it reads and wr
 - **On Gamepanion's AI** (the plan with Gamepanion's AI): Anthropic processes them on my behalf under its commercial terms and data processing addendum (Art. 28 GDPR). The transfer to the USA is covered by the EU standard contractual clauses in that addendum (Art. 46 (2) (c) GDPR). Under those terms Anthropic does not train its models on them. Gamepanion counts how much of the monthly allowance you used (tokens and minutes of speech, per month), and nothing else about the conversation.
 - **On your own Anthropic key:** the chat runs under your own agreement with Anthropic. Your key is stored encrypted and is never shown again; you can remove it on your account page at any time.
 
+**Pictures in the chat:** a picture you attach is made smaller in your browser, which also removes its metadata (such as where a photo was taken), and is sent to Anthropic with that one message, as described above. Gamepanion does not store it; what the AI reads from it can be filed in your log as text.
+
 **Speaking into the chat:** your recording is turned into text by a speech-to-text service on the same server (no third party). The recording is not stored; the text becomes your message.
 
 **Why and legal basis:** to answer what you ask in the chat (Art. 6 (1) (b) GDPR).
