@@ -1,11 +1,12 @@
 # gamepanion.app: Gamepanion (https://github.com/gamepanion/gamepanion) and the speech to text its chat uses. Nothing here
-# is published to the internet: Gamepanion listens on the server's private address, where Caddy passes requests on; whisper
+# is published to the internet: Gamepanion listens on the server's private address, where the Caddy on gewerbe-1 passes requests on; whisper
 # is reachable only from Gamepanion, on a network of their own.
 services:
   gamepanion:
     image: ghcr.io/gamepanion/gamepanion:0.5.5
     container_name: gamepanion
-    # Monitored by Uptime Kuma (AutoKuma reads these labels), past Caddy; the public name is checked at Caddy.
+    # Monitored by Uptime Kuma (AutoKuma reads these labels), past Caddy, over the private network from gewerbe-1; the
+    # public name is checked at Caddy there.
     labels:
       kuma.gamepanion.http.name: gamepanion (direct)
       kuma.gamepanion.http.url: http://${PRIVATE_IP}:8082/health

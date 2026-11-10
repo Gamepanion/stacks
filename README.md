@@ -2,11 +2,11 @@
 
 How [gamepanion.app](https://gamepanion.app) runs [Gamepanion](https://github.com/gamepanion/gamepanion): the compose file of the server and what it needs. Public, as a worked example of a production setup; take what is useful.
 
-| Folder        | What runs                                                                                                                  | Reachable                                                                                                                 |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `gamepanion/` | Gamepanion (SQLite in `data/`) and whisper (speaches, speech to text for the chat); `scripts/dump.sh` copies the databases | Gamepanion on the server's private address only (port 8082), where Caddy passes requests on; whisper from Gamepanion only |
+| Folder        | What runs                                                                                                                  | Reachable                                                                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `gamepanion/` | Gamepanion (SQLite in `data/`) and whisper (speaches, speech to text for the chat); `scripts/dump.sh` copies the databases | Gamepanion on the server's private address only (port 8082), where the Caddy on gewerbe-1 passes requests on; whisper from Gamepanion only |
 
-gamepanion.app runs on `products-1`, next to notefeed.me and gesetze-fuer-ki.de. Caddy, the certificates and the collectors of that server are in [notefeed/stacks](https://github.com/notefeed/stacks).
+gamepanion.app runs on `products-1`, next to notefeed.me and gesetze-fuer-ki.de. The collectors of that server are in [notefeed/stacks](https://github.com/notefeed/stacks); Caddy and the certificates are on `gewerbe-1`, the business's one public entry point (`caddy/` in the private MarcelBruckner-Business/stacks).
 
 ## How it is used
 
