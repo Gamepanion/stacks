@@ -62,4 +62,4 @@ restic -o sftp.command="ssh -F /etc/restic/ssh_config storagebox-gamepanion -s s
 
 ## Logs and monitoring
 
-The container logs go to Loki on `gewerbe-1`, labelled `product=gamepanion`. Uptime Kuma watches `https://gamepanion.app/health` as a player reaches it, through DNS and Caddy (the `kuma.*` labels in `compose.yaml`). Caddy counts requests per host name for Prometheus; its lines and counts for gamepanion.app carry `product=gamepanion`.
+The container logs go to Loki on `gewerbe-1`, labelled `product=gamepanion`. Uptime Kuma watches `/health` past Caddy, over the private network from `gewerbe-1` (the `kuma.*` labels in `compose.yaml`), and `https://gamepanion.app` through Caddy (the labels on Caddy in `MarcelBruckner-Business/stacks`). Caddy counts requests per host name for Prometheus; its lines and counts for gamepanion.app carry `product=gamepanion`.
